@@ -1,7 +1,16 @@
 http://caddy.local {
-    root /var/www/
+    root /var/www
     tls off
-    fastcgi / /var/run/php/php7.0-fpm.sock {
+    fastcgi / app:9000 {
+        ext     .php
+        split   .php
+        index   index.php
+    }
+}
+http://dashboard.caddy.local {
+    root /var/www/dashboard
+    tls off
+    fastcgi / app:9000 {
         ext     .php
         split   .php
         index   index.php
